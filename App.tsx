@@ -6,8 +6,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { UserCard } from "./uilibrary/UserCard";
 import { Toolbar } from "./uilibrary/Toolbar";
+import { LoadingIndicator } from "./uilibrary/LoadingIndicator";
 import { useTheme } from "./resources/theme";
 import { useTopUsers } from "./features/users/useTopUsers";
+import { ErrorMessage } from "./uilibrary/ErrorMessage";
 
 export default function App() {
   const theme = useTheme();
@@ -24,14 +26,10 @@ function UsersList() {
   const theme = useTheme();
   const { users, isLoading, error } = useTopUsers();
   if (isLoading) {
-    return <ActivityIndicator style={{ marginTop: 24 }} />;
+    return <LoadingIndicator />;
   }
   if (error) {
-    return (
-      <Text style={{ color: theme.text, padding: 24 }}>
-        Something went wrong: {error}
-      </Text>
-    );
+    return <ErrorMessage error={error} />;
   }
   return (
     <FlatList
