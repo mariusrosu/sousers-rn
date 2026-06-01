@@ -20,11 +20,11 @@ function toDomain(dto: UserDto): User {
   };
 }
 
-export async function getTopUsers(): Promise<User[]> {
+export async function getTopUsers(signal: AbortSignal): Promise<User[]> {
   const url =
     "https://api.stackexchange.com/2.2/users?page=1&pagesize=20&order=desc&sort=reputation&site=stackoverflow";
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
   if (!response.ok) {
     throw new Error("Request failed with status " + response.status);
   }

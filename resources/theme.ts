@@ -5,7 +5,7 @@ const light = {
   card: "#f2f3f5",
   text: "#0b0b0c",
   textMuted: "#6b7177",
-  accent: "#0xFFD0BCFF",
+  accent: "#FFD0BCFF",
 } as const;
 
 const dark = {
@@ -13,7 +13,7 @@ const dark = {
   card: "#16181c",
   text: "#ffffff",
   textMuted: "#6b7177",
-  accent: "#FF6650a4",
+  accent: "#6650A4",
 } as const;
 
 export type Theme = {
@@ -25,6 +25,6 @@ export type Theme = {
 };
 
 export function useTheme(): Theme {
-  const colorSceheme = useColorScheme();
-  return colorSceheme === "dark" ? dark : light;
+  const colorScheme = useColorScheme();
+  return colorScheme === "dark" ? dark : light;
 }

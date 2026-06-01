@@ -9,12 +9,15 @@ export function useTopUsers() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getTopUsers()
+    const controller = new AbortController();
+    getTopUsers(controller.signal)
       .then((users) => {
         setUsers(users);
         setError(null);
       })
-      .catch((error) => setError(error.message))
+      .catch((error) =>
+        setError(error instanceof Error ? error.message : "Unknown error"),
+      )
       .finally(() => setIsLoading(false));
   }, []);
 

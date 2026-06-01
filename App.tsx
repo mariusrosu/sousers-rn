@@ -1,8 +1,8 @@
 import React from "react";
 
 import { StatusBar } from "expo-status-bar";
-import { Text, FlatList, ActivityIndicator } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import { UserCard } from "./uilibrary/UserCard";
 import { Toolbar } from "./uilibrary/Toolbar";
@@ -14,11 +14,13 @@ import { ErrorMessage } from "./uilibrary/ErrorMessage";
 export default function App() {
   const theme = useTheme();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.bg }}>
-      <StatusBar style="auto" />
-      <Toolbar />
-      <UsersList />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1, backgroundColor: theme.bg }}>
+        <StatusBar style="auto" />
+        <Toolbar />
+        <UsersList />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
